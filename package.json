@@ -1,0 +1,41 @@
+{
+  "name": "javascript-vuln-demo",
+  "version": "1.0.0",
+  "description": "DEMO — intentional supply-chain and runtime vulnerabilities",
+  "main": "server.js",
+  "scripts": {
+    "preinstall": "node scripts/preinstall.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express":              "4.17.1",
+    "lodash":               "4.17.15",
+    "axios":                "0.19.2",
+    "serialize-javascript": "1.7.0",
+    "handlebars":           "4.5.3",
+    "node-serialize":       "0.0.4",
+    "ua-parser-js":         "0.7.28",
+    "minimist":             "0.0.8",
+    "event-stream":         "3.3.6",
+    "flatmap-stream":       "0.1.1"
+  },
+  "_supply_chain_notes": {
+    "typosquat_examples": {
+      "crossenv":    "typosquat of cross-env  — documented 2018 npm attack",
+      "colourama":   "typosquat of colorama   — documented PyPI attack",
+      "lodahs":      "typosquat of lodash     — substitutes number-1 for letter-l",
+      "expres":      "typosquat of express    — single-letter omission",
+      "mongoos":     "typosquat of mongoose   — trailing-letter drop"
+    },
+    "stale_high_severity": {
+      "event-stream@3.3.6":         "CVE — malicious payload injected Nov 2018 (supply chain)",
+      "flatmap-stream@0.1.1":       "malicious payload package from event-stream attack",
+      "node-serialize@0.0.4":       "RCE via deserialization — no patch available",
+      "ua-parser-js@0.7.28":        "CVE-2021-27292 — ReDoS",
+      "axios@0.19.2":               "CVE-2020-28168 — SSRF via redirects",
+      "handlebars@4.5.3":           "CVE-2019-19919 — prototype pollution / template injection",
+      "minimist@0.0.8":             "CVE-2021-44906 — prototype pollution",
+      "serialize-javascript@1.7.0": "CVE-2020-7660 — RCE via unsafe regex"
+    }
+  }
+}
