@@ -8,6 +8,7 @@ const app = express();
 app.post('/login', (req, res) => {
   const user = req.body.user;
   req.body.password;                      // used for auth, never logged
-  console.log('login attempt user=%s', user);  // no credential in the log
+  const safeUser = String(user).replace(/[\r\n]/g, '');  // CRLF-stripped before logging
+  console.log('login attempt user=%s', safeUser);  // no credential, no log injection
   res.send('ok');
 });

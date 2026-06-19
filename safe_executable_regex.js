@@ -8,5 +8,6 @@ const DIGITS = /\d/g;
 
 app.get('/redact', (req, res) => {
   const text = String(req.query.t || '');
-  res.send(text.replace(DIGITS, '#'));     // static pattern, user supplies text only
+  const count = (text.match(DIGITS) || []).length;  // static pattern; no user text reflected
+  res.json({ redactedCount: count });
 });
