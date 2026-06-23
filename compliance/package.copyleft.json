@@ -1,0 +1,13 @@
+{
+  "_comment": "License risk (SPDX) — copyleft + unknown licenses in a distributed package.",
+  "name": "app", "version": "1.0.0", "license": "MIT",
+  "dependencies": {
+    "gpl-lib": "^2.0.0",
+    "agpl-network-svc": "^1.0.0"
+  },
+  "_resolvedLicenses": {
+    "gpl-lib": "GPL-3.0-only",
+    "agpl-network-svc": "AGPL-3.0-only",
+    "mystery-pkg": "SEE LICENSE IN LICENSE.txt"
+  }
+}

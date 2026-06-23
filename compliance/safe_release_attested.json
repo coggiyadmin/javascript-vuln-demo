@@ -1,0 +1,7 @@
+{
+  "_comment": "SAFE mirror — signed artifact with SLSA provenance attestation.",
+  "artifact": "app-1.0.0.tgz",
+  "sha256": "f00ba700...",
+  "signature": "sigstore:MEUCIQ...",
+  "provenance": { "slsaLevel": 3, "builderId": "https://github.com/org/repo/.github/workflows/release.yml", "attestation": "intoto:..." }
+}
