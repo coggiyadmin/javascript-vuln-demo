@@ -1,0 +1,8 @@
+{
+  "_comment": "Provenance — release artifact with no signature or SLSA attestation.",
+  "artifact": "app-1.0.0.tgz",
+  "sha256": "f00ba700...",
+  "signature": null,
+  "provenance": null,
+  "builder": "unknown-local-machine"
+}
