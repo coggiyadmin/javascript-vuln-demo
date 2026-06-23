@@ -1,0 +1,7 @@
+{
+  "_comment": "Excessive Agency (OWASP LLM06) — filesystem root and wildcard tool scope.",
+  "tools": ["filesystem", "shell", "network"],
+  "filesystem_root": "/",
+  "shell_allowlist": "*",
+  "require_human_approval": false
+}

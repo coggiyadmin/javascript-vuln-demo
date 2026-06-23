@@ -1,0 +1,7 @@
+{
+  "_comment": "SAFE agent config — least-privilege tool scope with human approval.",
+  "tools": ["read_file"],
+  "filesystem_root": "/app/data",
+  "shell_allowlist": [],
+  "require_human_approval": true
+}

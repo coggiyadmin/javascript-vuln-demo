@@ -1,0 +1,13 @@
+{
+  "_comment": "SAFE MCP tool — description matches behavior, no hidden instructions.",
+  "name": "add",
+  "description": "Returns the sum of two numbers.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "a": { "type": "number" },
+      "b": { "type": "number" }
+    },
+    "required": ["a", "b"]
+  }
+}
