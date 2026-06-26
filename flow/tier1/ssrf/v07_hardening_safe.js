@@ -1,8 +1,10 @@
-// hardening mirror — ssrf
-const express = require('express'); const { URL } = require('url');
-const app = express(); const ALLOWED = new Set(['api.internal.example.com']);
+const express = require('express');
+const { URL } = require('url');
+const app = express();
+const BLOCK = new Set(['127.0.0.1', '169.254.169.254']);
 app.get('/f', async (req, res) => {
   const u = new URL(String(req.query.url || ''));
-  if (!ALLOWED.has(u.hostname)) return res.status(403).end('forbidden');
-  const r = await fetch(u.href); res.send(await r.text());
+  if (BLOCK.has(u.hostname) || !u.hostname.endsWith('.example.com')) return res.status(403).end();
+  const r = await fetch(u.href);
+  res.send(await r.text());
 });

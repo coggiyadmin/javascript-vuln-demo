@@ -1,8 +1,8 @@
-// hardening mirror — path_traversal
-const express = require('express'); const fs = require('fs'); const path = require('path');
-const app = express(); const ROOT = '/data';
+const express = require('express');
+const fs = require('fs');
+const app = express();
 app.get('/r', (req, res) => {
-  const full = path.resolve(ROOT, String(req.query.p || ''));
-  if (!full.startsWith(ROOT)) return res.status(403).end();
-  res.send(fs.readFileSync(full, 'utf8'));
+  const p = String(req.query.p || '');
+  if (!/^[A-Za-z0-9]+$/.test(p)) return res.status(400).end();
+  res.send(fs.readFileSync('/data/' + p, 'utf8'));
 });

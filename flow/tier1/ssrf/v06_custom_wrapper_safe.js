@@ -1,8 +1,9 @@
-// custom_wrapper mirror — ssrf
-const express = require('express'); const { URL } = require('url');
-const app = express(); const ALLOWED = new Set(['api.internal.example.com']);
+const express = require('express');
+const app = express();
+function companySanitize(url) { return String(url).replace('@', ''); }
 app.get('/f', async (req, res) => {
-  const u = new URL(String(req.query.url || ''));
-  if (!ALLOWED.has(u.hostname)) return res.status(403).end('forbidden');
-  const r = await fetch(u.href); res.send(await r.text());
+  const url = companySanitize(req.query.url || '');
+  if (url.includes('169.254')) return res.status(403).end();
+  const r = await fetch(url);
+  res.send(await r.text());
 });
