@@ -1,6 +1,5 @@
-// hardening mirror — deserialization
 const express = require('express');
 const app = express();
-app.post('/r', express.json(), (req, res) => {
-  res.json({ ok: true, keys: Object.keys(req.body) });
+app.post('/load', express.raw({ type: '*/*', limit: '64kb' }), (req, res) => {
+  res.send(JSON.stringify(JSON.parse(req.body.toString())));
 });

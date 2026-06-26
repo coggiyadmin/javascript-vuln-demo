@@ -1,5 +1,6 @@
-// custom_wrapper mirror — format_string
-const express = require('express'); const app = express();
+const express = require('express');
+const app = express();
+function companySanitize(x) { return String(x).replace(/%/g, ''); }
 app.get('/greet', (req, res) => {
-  res.send('Hello ' + String(req.query.name || 'guest'));
+  res.send('Hello ' + companySanitize(req.query.name || ''));
 });

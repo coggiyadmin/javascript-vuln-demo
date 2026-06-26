@@ -1,6 +1,6 @@
-// custom_wrapper mirror — deserialization
 const express = require('express');
 const app = express();
-app.post('/r', express.json(), (req, res) => {
-  res.json({ ok: true, keys: Object.keys(req.body) });
+function companySanitize(s) { return String(s).replace(/__/g, ''); }
+app.post('/load', express.raw({ type: '*/*' }), (req, res) => {
+  res.send(JSON.stringify(JSON.parse(companySanitize(req.body.toString()))));
 });

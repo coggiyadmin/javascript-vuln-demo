@@ -1,6 +1,7 @@
-// wrong_context mirror — log_injection
-const express = require('express'); const app = express();
-app.post('/login', express.urlencoded(), (req, res) => {
-  console.log('login user=' + req.body.user);
-  res.end();
+const express = require('express');
+const app = express();
+app.get('/log', (req, res) => {
+  const user = String(req.query.user || '').replace(/&/g, '&amp;');
+  console.log('user=' + user);
+  res.end('ok');
 });

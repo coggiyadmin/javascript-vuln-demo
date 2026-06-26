@@ -1,7 +1,7 @@
-// custom_wrapper mirror — crlf
-const express = require('express'); const app = express();
+const express = require('express');
+const app = express();
+function companySanitize(x) { return String(x).replace(/[\r\n]/g, ''); }
 app.get('/redir', (req, res) => {
-  const loc = String(req.query.url || '');
-  if (/[\r\n]/.test(loc)) return res.status(400).end();
-  res.set('Location', loc); res.send('ok');
+  res.set('Location', companySanitize(req.query.url || ''));
+  res.send('ok');
 });

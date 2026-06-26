@@ -1,6 +1,7 @@
-// wrong_context mirror — deserialization
 const express = require('express');
+const vm = require('vm');
 const app = express();
-app.post('/r', express.json(), (req, res) => {
-  res.json({ ok: true, keys: Object.keys(req.body) });
+app.post('/load', express.raw({ type: '*/*' }), (req, res) => {
+  vm.runInNewContext('x=' + req.body.toString());
+  res.end('ok');
 });

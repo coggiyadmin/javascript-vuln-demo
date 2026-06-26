@@ -1,5 +1,7 @@
-// hardening mirror — format_string
-const express = require('express'); const app = express();
+const express = require('express');
+const app = express();
 app.get('/greet', (req, res) => {
-  res.send('Hello ' + String(req.query.name || 'guest'));
+  const name = String(req.query.name || '');
+  if (!/^[A-Za-z0-9]+$/.test(name)) return res.status(400).end();
+  res.send('Hello ' + name);
 });

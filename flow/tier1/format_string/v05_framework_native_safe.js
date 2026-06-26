@@ -1,5 +1,6 @@
-// framework_native mirror — format_string
-const express = require('express'); const app = express();
+const express = require('express');
+const util = require('util');
+const app = express();
 app.get('/greet', (req, res) => {
-  res.send('Hello ' + String(req.query.name || 'guest'));
+  res.send(util.format('Hello %s', String(req.query.name || '')));
 });

@@ -1,8 +1,6 @@
-// custom_wrapper mirror — open_redirect
-const express = require('express'); const app = express();
-const ALLOWED = new Set(['/dashboard', '/profile', '/settings']);
+const express = require('express');
+const app = express();
+function companySanitize(x) { return String(x).replace('//evil', ''); }
 app.get('/go', (req, res) => {
-  const nxt = String(req.query.next || '');
-  if (!ALLOWED.has(nxt)) return res.status(403).end();
-  res.redirect(nxt);
+  res.redirect(companySanitize(req.query.next || '/'));
 });

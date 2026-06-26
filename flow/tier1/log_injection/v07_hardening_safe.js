@@ -1,6 +1,8 @@
-// hardening mirror — log_injection
-const express = require('express'); const app = express();
-app.post('/login', express.urlencoded(), (req, res) => {
-  console.log('login user=' + req.body.user);
-  res.end();
+const express = require('express');
+const app = express();
+app.get('/log', (req, res) => {
+  const user = String(req.query.user || '');
+  if (user.length > 64) return res.status(400).end();
+  console.log('user=%s', user);
+  res.end('ok');
 });

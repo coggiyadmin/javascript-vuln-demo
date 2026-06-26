@@ -1,6 +1,7 @@
-// custom_wrapper mirror — log_injection
-const express = require('express'); const app = express();
-app.post('/login', express.urlencoded(), (req, res) => {
-  console.log('login user=' + req.body.user);
-  res.end();
+const express = require('express');
+const app = express();
+function companySanitize(x) { return String(x).replace(/\n/g, ''); }
+app.get('/log', (req, res) => {
+  console.log('user=' + companySanitize(req.query.user || ''));
+  res.end('ok');
 });
