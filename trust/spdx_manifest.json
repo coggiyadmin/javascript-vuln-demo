@@ -1,0 +1,5 @@
+{
+  "_comment": "SPDX allowlist for JS deps.",
+  "licenses": ["MIT", "Apache-2.0"],
+  "forbidden": ["AGPL-3.0"]
+}
