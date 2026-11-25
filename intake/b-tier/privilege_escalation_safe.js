@@ -3,7 +3,7 @@
 const express = require('express');
 const session = require('express-session');
 const app = express();
-app.use(session({ secret: 'dev' }));
+app.use(session({ secret: 'changeme' }));
 app.get('/elevate', (req, res) => {
   if (!req.session.isStaff) {
     return res.status(403).end('forbidden');
